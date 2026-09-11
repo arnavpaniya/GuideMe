@@ -128,10 +128,10 @@ export function HomepageHeader() {
         {/* Right CTA Actions */}
         <div className="flex items-center gap-2.5 shrink-0 sm:gap-3">
           <Link
-            href="/auth/signup?role=MENTOR"
+            href="/auth/signup"
             className="hidden rounded-full border border-violet-200/90 bg-white/85 px-4 py-2 text-xs sm:text-[13px] font-semibold text-[#1E1B4B] shadow-xs backdrop-blur-sm transition-all duration-200 hover:border-violet-300 hover:bg-white hover:shadow-sm active:scale-[0.98] xl:inline-flex"
           >
-            Become a Mentor
+            Create free account
           </Link>
 
           <Link
@@ -203,11 +203,11 @@ export function HomepageHeader() {
 
             <div className="flex flex-col gap-2.5 border-t border-violet-100 pt-3">
               <Link
-                href="/auth/signup?role=MENTOR"
+                href="/auth/signup"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center rounded-full border border-violet-200 bg-white py-3 text-sm font-semibold text-[#1E1B4B] shadow-xs transition hover:bg-violet-50"
               >
-                Become a Mentor
+                Create free account
               </Link>
               <Link
                 href="/find-mentor"

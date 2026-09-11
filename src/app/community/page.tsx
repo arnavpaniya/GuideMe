@@ -172,12 +172,12 @@ export default function CommunityPage() {
 
       <main className="relative">
         {/* Hero Section */}
-        <section className="relative overflow-hidden border-b border-violet-100/80 pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
+        <section className="mentra-hero-depth relative overflow-hidden border-b border-violet-100/80 pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
               {/* Left copy */}
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/80 px-3.5 py-1.5 text-xs font-semibold text-[#6D28D9] shadow-xs backdrop-blur-sm">
+                <div className="mentra-clay-pill inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold text-[#6D28D9] backdrop-blur-sm">
                   <Users className="size-3.5 text-[#7C3AED]" />
                   <span>Mentra Student Community</span>
                 </div>
@@ -225,7 +225,7 @@ export default function CommunityPage() {
                   aria-hidden="true"
                 />
 
-                <div className="relative rounded-3xl border border-violet-100/90 bg-white/95 p-5 sm:p-6 shadow-[0_20px_60px_-25px_rgba(30,27,75,0.18)] backdrop-blur-xl">
+                <div className="mentra-clay-card relative rounded-3xl border bg-white/95 p-5 transition-transform duration-500 hover:-translate-y-1 sm:p-6 backdrop-blur-xl">
                   {/* Community Hero Image Banner */}
                   <div className="relative mb-5 overflow-hidden rounded-2xl border border-violet-100/90 shadow-xs group">
                     <Image

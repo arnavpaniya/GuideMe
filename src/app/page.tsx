@@ -184,7 +184,7 @@ function HeroSection({
   return (
     <section
       id="top"
-      className="relative overflow-hidden border-b border-violet-100/70 bg-[#FAF5FF]"
+      className="mentra-hero-depth relative overflow-hidden border-b border-violet-100/70 bg-[#FAF5FF]"
     >
       {/* Ambient background */}
       <div
@@ -206,7 +206,7 @@ function HeroSection({
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           {/* Hero copy */}
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/70 px-3.5 py-2 text-xs font-semibold text-[#6D28D9] shadow-[0_8px_30px_-24px_rgba(124,58,237,0.7)] backdrop-blur-xl">
+            <div className="mentra-clay-pill inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold text-[#6D28D9] backdrop-blur-xl">
               <span
                 className="size-1.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#EC4899]"
                 aria-hidden="true"
@@ -238,10 +238,10 @@ function HeroSection({
               </Link>
 
               <Link
-                href="/auth/signup?role=MENTOR"
+                href="/auth/signup"
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-violet-200 bg-white/75 px-6 text-sm font-semibold text-[#1E1B4B] shadow-sm backdrop-blur-xl transition duration-200 hover:-translate-y-0.5 hover:border-violet-300 hover:bg-white"
               >
-                Become a Mentor
+                Create free account
               </Link>
             </div>
 
@@ -327,7 +327,7 @@ function HeroSection({
               aria-hidden="true"
             />
 
-            <div className="relative rounded-[2rem] border border-white/80 bg-white/70 p-5 shadow-[0_28px_80px_-38px_rgba(30,27,75,0.30)] backdrop-blur-2xl sm:p-6">
+            <div className="mentra-clay-card relative rounded-[2rem] border bg-white/70 p-5 backdrop-blur-2xl transition-transform duration-500 hover:-translate-y-1 sm:p-6">
               {/* Live Session Photo Banner */}
               <div className="relative mb-5 overflow-hidden rounded-2xl border border-violet-100/90 shadow-xs group">
                 <Image
@@ -587,7 +587,7 @@ function ProblemSection() {
       className="bg-white py-20 sm:py-24 lg:py-28"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div className="grid gap-10 lg:grid-cols-[0.74fr_1.26fr] lg:gap-16">
           <div className="max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7C3AED]">
               The problem
@@ -601,6 +601,25 @@ function ProblemSection() {
               Mentra exists for the moment when students need more than
               generic advice and less than a giant career-consulting process.
             </p>
+
+            <div className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-violet-100 bg-[#F8F5FF] shadow-[0_22px_55px_-38px_rgba(76,29,149,0.45)]">
+              <Image
+                src="/brand/decision-guidance-illustration.png"
+                alt="A senior helping a student see their academic options more clearly"
+                width={1024}
+                height={1536}
+                sizes="(min-width: 1024px) 29vw, (min-width: 640px) 48vw, 100vw"
+                className="aspect-[1.12/1] w-full object-cover object-[50%_34%]"
+              />
+              <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/70 bg-white/85 p-3.5 shadow-lg shadow-violet-950/10 backdrop-blur-md">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7C3AED]">
+                  From uncertainty to a next step
+                </p>
+                <p className="mt-1 text-sm font-semibold leading-5 text-[#1E1B4B]">
+                  A conversation turns a huge decision into a clear path forward.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid gap-px overflow-hidden rounded-[2rem] border border-violet-100 bg-violet-100 shadow-[0_20px_60px_-45px_rgba(30,27,75,0.25)] sm:grid-cols-2">
@@ -680,7 +699,7 @@ function MentorsSection({
             href="/find-mentor"
             className="group inline-flex min-h-11 items-center gap-2 self-start rounded-full border border-violet-200 bg-white/80 px-5 text-sm font-semibold text-[#7C3AED] shadow-sm backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-violet-300 hover:bg-white lg:self-auto"
           >
-            Explore mentors
+            See all mentors
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         </div>
@@ -791,7 +810,7 @@ function MentorsSection({
               href="/find-mentor"
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#7C3AED] px-5 text-sm font-semibold text-white shadow-[0_10px_28px_-18px_rgba(124,58,237,0.65)] transition hover:-translate-y-0.5 hover:bg-[#6D28D9]"
             >
-              Find a Mentor
+              Browse mentor directory
               <ArrowRight className="size-4" />
             </Link>
           </div>
@@ -1037,7 +1056,7 @@ function PricingSection({
                     href="/find-mentor"
                     className="mt-8 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-[#7C3AED] text-sm font-semibold text-white shadow-[0_12px_30px_-18px_rgba(124,58,237,0.70)] transition hover:-translate-y-0.5 hover:bg-[#6D28D9]"
                   >
-                    Find a mentor
+                    Compare mentors
                     <ArrowRight className="size-4" />
                   </Link>
                 )}
@@ -1348,17 +1367,16 @@ function FinalCtaSection({
 }) {
   return (
     <section id="cta" className="relative overflow-hidden bg-[#1E1B4B] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-      {/* Background Image: Softly blurred campus at twilight */}
+      {/* Background image stays untinted; the foreground card preserves text contrast. */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
           src="/brand/cta-campus-bg.jpg"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-30 blur-[2px] scale-105"
+          className="object-cover object-center opacity-90 blur-[1px] scale-105"
           priority={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E1B4B]/80 via-[#1E1B4B]/65 to-[#1E1B4B]/95" />
       </div>
 
       <div
@@ -1402,10 +1420,10 @@ function FinalCtaSection({
               </Link>
 
               <Link
-                href="/auth/signup?role=MENTOR"
+                href="/auth/signup"
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-6 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-white/10"
               >
-                Become a Mentor
+                Create free account
               </Link>
             </div>
           </div>

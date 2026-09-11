@@ -16,9 +16,10 @@ const emailSchema = z.string().trim().email("Enter a valid email address");
 
 type AdminSignInViewProps = {
   emailEnabled: boolean;
+  googleEnabled: boolean;
 };
 
-export function AdminSignInView({ emailEnabled }: AdminSignInViewProps) {
+export function AdminSignInView({ emailEnabled, googleEnabled }: AdminSignInViewProps) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -74,10 +75,10 @@ export function AdminSignInView({ emailEnabled }: AdminSignInViewProps) {
         <Button
           type="button"
           onClick={() => void handleGoogleSignIn()}
-          disabled={isPending}
+          disabled={!googleEnabled || isPending}
           className="h-11 w-full rounded-xl bg-[#172033] font-semibold text-white hover:bg-[#27334A] focus-visible:ring-2 focus-visible:ring-[#4F46E5]/40 focus-visible:ring-offset-2"
         >
-          Continue with Google
+          {googleEnabled ? "Continue with Google" : "Google sign-in unavailable"}
         </Button>
 
         <div className="relative py-1">

@@ -288,7 +288,7 @@ function MentorCard({ mentor }: { mentor: PublicMentorCard }) {
   const isElite = mentor.tier === "ELITE";
 
   return (
-    <article className="group relative flex flex-col justify-between rounded-3xl border border-violet-100/90 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(30,27,75,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-violet-300 hover:shadow-[0_16px_40px_-12px_rgba(124,58,237,0.18)]">
+    <article className="mentra-clay-card group relative flex flex-col justify-between rounded-3xl border bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-violet-200 hover:shadow-[0_24px_48px_-20px_rgba(124,58,237,0.22)]">
       {/* Top row: Avatar, Info, and Tier Pill */}
       <div>
         <div className="flex items-start justify-between gap-3">
@@ -298,7 +298,7 @@ function MentorCard({ mentor }: { mentor: PublicMentorCard }) {
               src={mentor.image}
               alt={mentor.name}
               fallback={mentor.firstName.charAt(0)}
-              className="size-16 rounded-2xl border border-violet-100 bg-violet-50/90 text-lg font-bold text-[#7C3AED] ring-2 ring-violet-50"
+              className="size-16 rounded-2xl border border-white bg-violet-50/90 text-lg font-bold text-[#7C3AED] ring-2 ring-violet-50 shadow-[inset_2px_2px_5px_rgba(255,255,255,0.9),0_10px_20px_-12px_rgba(76,29,149,0.45)]"
             />
             {mentor.availableThisWeek && (
               <span
@@ -612,6 +612,10 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
     },
   ];
 
+  const primaryCategoryTabs = categoryTabs.slice(0, 5);
+  const additionalCategoryTabs = categoryTabs.slice(5);
+  const activeRefinementCount = [tier, priceMax, available, forClass].filter(Boolean).length;
+
   return (
     <div className="relative min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
       {/* Top Navigation */}
@@ -629,11 +633,11 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
 
       <main className="relative">
         {/* Compact, Professional Header */}
-        <section className="relative border-b border-violet-100/70 bg-gradient-to-b from-[#FAF5FF] to-white/40 pt-8 pb-7 sm:pt-12 sm:pb-9">
+        <section className="mentra-hero-depth relative overflow-hidden border-b border-violet-100/70 bg-gradient-to-b from-[#FAF5FF] to-white/40 pt-8 pb-7 sm:pt-12 sm:pb-9">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/80 px-3.5 py-1 text-xs font-semibold text-[#6D28D9] shadow-xs backdrop-blur-sm">
+              <div className="mentra-clay-pill inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold text-[#6D28D9] backdrop-blur-sm">
                 <span className="size-1.5 rounded-full bg-[#7C3AED]" />
                 <span>Verified Senior Guidance Network</span>
               </div>
@@ -685,7 +689,7 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
                 <Search className="pointer-events-none absolute left-4.5 top-1/2 size-4.5 -translate-y-1/2 text-slate-400" />
 
                 <input
-                  className="h-12 sm:h-13 w-full rounded-full border border-violet-200/90 bg-white pl-12 pr-28 text-sm text-[#1E1B4B] shadow-xs outline-none transition placeholder:text-slate-400 focus:border-[#7C3AED] focus:ring-4 focus:ring-violet-500/10"
+                  className="h-12 sm:h-13 w-full rounded-full border border-white bg-white/90 pl-12 pr-28 text-sm text-[#1E1B4B] shadow-[inset_2px_2px_5px_rgba(255,255,255,0.9),0_14px_30px_-22px_rgba(76,29,149,0.42)] outline-none transition placeholder:text-slate-400 focus:border-[#7C3AED] focus:ring-4 focus:ring-violet-500/10"
                   defaultValue={query}
                   name="q"
                   placeholder="Search college, entrance exam, branch, or mentor name..."
@@ -700,9 +704,12 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
                 </button>
               </form>
 
-              {/* Horizontal Category Scroll Tabs */}
-              <div className="mt-5 -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-2 pt-1 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
-                {categoryTabs.map((tab) => {
+              {/* The most-used paths stay visible; lower-frequency paths are one click away. */}
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <span className="mr-1 hidden text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400 lg:inline">
+                  Browse
+                </span>
+                {primaryCategoryTabs.map((tab) => {
                   const Icon = tab.icon;
                   return (
                     <Link
@@ -712,10 +719,10 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
                         query: removeEmpty(tab.query),
                       }}
                       className={cn(
-                        "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all duration-150",
+                        "inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all duration-150",
                         tab.active
-                          ? "border-[#7C3AED] bg-[#7C3AED] text-white shadow-xs"
-                          : "border-violet-200/70 bg-white/80 text-slate-600 hover:border-violet-300 hover:bg-violet-50/80 hover:text-[#1E1B4B]"
+                          ? "border-[#7C3AED] bg-[#7C3AED] text-white shadow-[0_10px_20px_-12px_rgba(124,58,237,0.7)]"
+                          : "border-white bg-white/80 text-slate-600 shadow-[inset_1px_1px_3px_rgba(255,255,255,0.9),0_9px_18px_-15px_rgba(76,29,149,0.3)] hover:-translate-y-0.5 hover:border-violet-200 hover:bg-violet-50/80 hover:text-[#1E1B4B]"
                       )}
                     >
                       <Icon
@@ -728,13 +735,44 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
                     </Link>
                   );
                 })}
+                <details className="group relative">
+                  <summary className="flex cursor-pointer list-none items-center gap-1.5 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-violet-200 hover:text-[#7C3AED] [&::-webkit-details-marker]:hidden">
+                    More paths
+                    <span className="text-[10px] text-slate-400 transition group-open:rotate-45">+</span>
+                  </summary>
+                  <div className="absolute left-0 top-[calc(100%+0.55rem)] z-20 grid min-w-52 gap-1 rounded-2xl border border-violet-100 bg-white p-2 shadow-[0_18px_45px_-20px_rgba(76,29,149,0.28)]">
+                    {additionalCategoryTabs.map((tab) => {
+                      const Icon = tab.icon;
+                      return (
+                        <Link
+                          key={tab.id}
+                          href={{ pathname: "/find-mentor", query: removeEmpty(tab.query) }}
+                          className={cn(
+                            "flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition",
+                            tab.active ? "bg-violet-50 text-[#7C3AED]" : "text-slate-600 hover:bg-violet-50 hover:text-[#1E1B4B]",
+                          )}
+                        >
+                          <Icon className="size-3.5 text-[#7C3AED]" />
+                          {tab.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </details>
               </div>
 
-              {/* Secondary Filter Tags Row */}
-              <div className="mt-3 -mx-4 flex items-center gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:px-0 sm:flex-wrap [&::-webkit-scrollbar]:hidden">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mr-1 hidden sm:inline">
-                  Refine:
-                </span>
+              {/* Refinements no longer permanently occupy a second dense row. */}
+              <details className="group mt-3" open={activeRefinementCount > 0}>
+                <summary className="flex w-fit cursor-pointer list-none items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-violet-200 hover:bg-white hover:text-[#7C3AED] [&::-webkit-details-marker]:hidden">
+                  Filters
+                  {activeRefinementCount > 0 && (
+                    <span className="flex size-4 items-center justify-center rounded-full bg-[#7C3AED] text-[10px] text-white">
+                      {activeRefinementCount}
+                    </span>
+                  )}
+                  <span className="text-[10px] text-slate-400 transition group-open:rotate-45">+</span>
+                </summary>
+                <div className="mt-2 flex flex-wrap items-center gap-1.5">
                 {quickFilters.map((filter) => {
                   const Icon = filter.icon;
                   return (
@@ -773,7 +811,8 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
                     <span>Clear all</span>
                   </Link>
                 )}
-              </div>
+                </div>
+              </details>
             </div>
           </div>
         </section>

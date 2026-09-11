@@ -28,6 +28,7 @@ type SignInViewProps = {
   callbackUrl: string;
   errorCode?: string;
   emailEnabled: boolean;
+  googleEnabled: boolean;
 };
 
 const emailSchema = z
@@ -39,6 +40,7 @@ export function SignInView({
   callbackUrl,
   errorCode,
   emailEnabled,
+  googleEnabled,
 }: SignInViewProps) {
   const router = useRouter();
 
@@ -193,7 +195,7 @@ export function SignInView({
             type="button"
             size="lg"
             onClick={handleGoogleSignIn}
-            disabled={pendingProvider !== null}
+            disabled={!googleEnabled || pendingProvider !== null}
             aria-busy={
               pendingProvider === "google"
             }
@@ -206,7 +208,9 @@ export function SignInView({
 
             {pendingProvider === "google"
               ? "Redirecting to Google…"
-              : "Continue with Google"}
+              : googleEnabled
+                ? "Continue with Google"
+                : "Google sign-in unavailable"}
           </Button>
 
           {/* Divider */}

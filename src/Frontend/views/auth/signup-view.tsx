@@ -37,6 +37,7 @@ type SignupViewProps = {
   callbackUrl: string;
   errorCode?: string;
   isCompletingOAuth: boolean;
+  googleEnabled: boolean;
 };
 
 const signupRoleSchema = z.enum(["STUDENT", "MENTOR"]);
@@ -72,6 +73,7 @@ export function SignupView({
   callbackUrl,
   errorCode,
   isCompletingOAuth,
+  googleEnabled,
 }: SignupViewProps) {
   const router = useRouter();
   const { data: session, status, update } = useSession();
@@ -442,18 +444,23 @@ export function SignupView({
                     <Button
                       type="button"
                       onClick={handleGoogleSignup}
-                      disabled={!selectedRole || pending !== null}
+                      disabled={!googleEnabled || !selectedRole || pending !== null}
                       className="group h-12 flex-1 rounded-xl bg-[#4F46E5] text-sm font-semibold text-white shadow-[0_14px_30px_-20px_rgba(79,70,229,0.5)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#4338CA] hover:shadow-[0_18px_36px_-20px_rgba(79,70,229,0.56)] active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-[#4F46E5]/40 focus-visible:ring-offset-2"
                     >
                       <GoogleIcon />
-                      {pending === "google" ? "Redirecting to Google..." : "Continue with Google"}
+                      {pending === "google"
+                        ? "Redirecting to Google..."
+                        : googleEnabled
+                          ? "Continue with Google"
+                          : "Google sign-up unavailable"}
                       <ArrowRight className="size-4" />
                     </Button>
                   </div>
 
                   <p className="text-xs leading-5 text-slate-400">
-                    Your role is saved securely before Google sign-in so we can finish
-                    setting up your account when you return.
+                    {googleEnabled
+                      ? "Your role is saved securely before Google sign-in so we can finish setting up your account when you return."
+                      : "Google sign-up is not configured for this environment."}
                   </p>
                 </>
               )}
