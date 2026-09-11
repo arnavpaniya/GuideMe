@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight, Check, Clock, Compass, Flame, Users } from "lucide-react";
 
 import { cn } from "@/Backend/server/utils";
@@ -49,7 +49,7 @@ const DEFAULT_SOLUTIONS: Record<string, string> = {
   "04": "Proactive guidance before deadlines",
 };
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -60,7 +60,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 24,
@@ -72,7 +72,7 @@ const cardVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
