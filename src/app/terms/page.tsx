@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
-  CheckCircle2,
   ChevronRight,
-  FileText,
-  HelpCircle,
   Mail,
   Scale,
   ShieldAlert,
@@ -36,19 +33,17 @@ export default function TermsOfServicePage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <main className="min-h-screen overflow-x-hidden bg-[#FAF5FF] text-[#1E1B4B]">
       <HomepageHeader />
 
       {/* Hero Header */}
-      <section
-        className="relative overflow-hidden border-b border-violet-100/80 px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
-      >
+      <section className="relative overflow-hidden border-b border-violet-100/80 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div
-          className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-[#7C3AED]/[0.08] blur-[90px]"
+          className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full bg-[#7C3AED]/10 blur-[100px]"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -right-20 top-10 h-72 w-72 rounded-full bg-[#F97316]/[0.06] blur-[90px]"
+          className="pointer-events-none absolute -right-20 top-10 h-80 w-80 rounded-full bg-[#F97316]/[0.08] blur-[110px]"
           aria-hidden="true"
         />
 
@@ -67,30 +62,28 @@ export default function TermsOfServicePage() {
             <span className="font-semibold text-[#7C3AED]">Terms of Service</span>
           </nav>
 
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#6D28D9] shadow-xs backdrop-blur-sm"
-          >
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-[#7C3AED] shadow-[0_2px_10px_-4px_rgba(124,58,237,0.12)] backdrop-blur-sm">
             <Scale className="size-3.5 text-[#7C3AED]" />
-            <span>User Agreement & Rules</span>
+            <span>User Agreement &amp; Rules</span>
           </div>
 
-          <h1
-            className="mt-4 text-balance text-3xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-4xl lg:text-5xl"
-          >
+          <h1 className="mt-4 text-balance text-3xl font-extrabold tracking-tight text-[#1E1B4B] sm:text-4xl lg:text-5xl">
             Terms of Service
           </h1>
 
-          <p className="mt-4 text-base leading-7 text-[color:rgb(75,88,117)] sm:text-lg">
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
             Welcome to Mentra. These Terms of Service govern your access to and use of our platform, booking marketplace, community circles, and mentorship sessions. Please read these terms carefully before booking or offering guidance.
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500">
-            <span className="rounded-md bg-violet-100/70 px-2.5 py-1 text-[#6D28D9]">
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-500">
+            <span className="rounded-full border border-violet-200/70 bg-white/80 px-3 py-1 text-[#7C3AED] shadow-xs">
               Effective Date: {lastUpdated}
             </span>
-            <span>Version 3.1</span>
-            <span>·</span>
-            <span>Binding Agreement</span>
+            <span className="rounded-full border border-violet-100 bg-white/60 px-3 py-1 text-slate-600">
+              Version 3.1
+            </span>
+            <span className="hidden sm:inline" aria-hidden="true">·</span>
+            <span className="text-slate-500">Binding Agreement</span>
           </div>
         </div>
       </section>
@@ -100,13 +93,11 @@ export default function TermsOfServicePage() {
         <div className="mx-auto grid max-w-4xl gap-10 lg:grid-cols-[240px_1fr] lg:gap-14">
           {/* Sticky Table of Contents Sidebar for Desktop */}
           <aside className="hidden lg:block">
-            <div
-              className="sticky top-28 rounded-2xl border border-violet-100/80 bg-white/80 p-4 shadow-xs backdrop-blur-md"
-            >
+            <div className="sticky top-28 rounded-2xl border border-violet-200/60 bg-white/80 p-4 shadow-[0_10px_30px_-15px_rgba(124,58,237,0.08)] backdrop-blur-xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#7C3AED]">
                 Terms Sections
               </p>
-              <nav className="flex flex-col space-y-2 text-xs font-medium text-slate-600">
+              <nav className="flex flex-col space-y-1.5 text-xs font-medium text-slate-600">
                 {sections.map((sec) => (
                   <a
                     key={sec.id}
@@ -121,38 +112,27 @@ export default function TermsOfServicePage() {
           </aside>
 
           {/* Legal Body Articles */}
-          <div className="space-y-10 text-slate-700 leading-relaxed">
+          <div className="space-y-10 text-slate-600 leading-relaxed">
             {/* Essential Principle Box */}
-            <div
-              className="rounded-2xl border border-amber-200/80 bg-amber-50/70 p-6 text-amber-950 shadow-xs sm:p-7"
-            >
+            <div className="rounded-2xl border border-amber-200/80 bg-gradient-to-br from-amber-50/80 to-white/90 p-6 text-amber-950 shadow-[0_10px_30px_-15px_rgba(245,158,11,0.08)] backdrop-blur-sm sm:p-7">
               <div className="flex items-center gap-2.5 font-bold text-amber-900">
                 <ShieldAlert className="size-5 text-amber-600" />
-                <h2 className="text-lg">Honest Peer Guidance Disclaimer</h2>
+                <h2 className="text-lg text-[#1E1B4B]">Honest Peer Guidance Disclaimer</h2>
               </div>
-              <p className="mt-2.5 text-sm leading-6 text-amber-900">
+              <p className="mt-2.5 text-sm leading-6 text-slate-700">
                 Mentra is a peer-to-peer mentorship platform connecting school students and college aspirants with verified undergraduate and postgraduate seniors who have recently navigated the same academic pathways. Mentors share their lived personal experiences, study strategies, and campus insights. Mentra does not guarantee college admissions, examination percentiles, job placements, or visa approvals.
               </p>
             </div>
 
             {/* Section 1 */}
-            <article
-              id="acceptance-terms"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
-                1. Acceptance & Eligibility
+            <article id="acceptance-terms" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
+                1. Acceptance &amp; Eligibility
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 By registering an account, browsing mentor listings, or booking a guidance session on Mentra, you represent and warrant that:
               </p>
-              <ul
-                className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base"
-              >
+              <ul className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base">
                 <li>
                   You are at least 13 years of age. Users under 18 years of age
                   require consent and oversight from a parent or legal guardian.
@@ -169,23 +149,14 @@ export default function TermsOfServicePage() {
             </article>
 
             {/* Section 2 */}
-            <article
-              id="platform-nature"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
+            <article id="platform-nature" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
                 2. Nature of Services
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 Mentra provides a technology marketplace enabling:
               </p>
-              <ul
-                className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base"
-              >
+              <ul className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base">
                 <li>
                   Discovery and filtered search of verified college seniors across
                   streams (Engineering, Medicine, Commerce, Law, Arts, Management).
@@ -199,27 +170,18 @@ export default function TermsOfServicePage() {
                   community circles.
                 </li>
               </ul>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 Mentra acts solely as an intermediary and technology facilitator
                 between independent students and independent mentors.
               </p>
             </article>
 
             {/* Section 3 */}
-            <article
-              id="account-verification"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
-                3. Accounts & Mentor Verification
+            <article id="account-verification" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
+                3. Accounts &amp; Mentor Verification
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 Mentors must submit verifiable documentation of their educational
                 credentials (college student ID card, official alumni institutional
                 email, examination scorecards) before their profile is marked with
@@ -230,24 +192,15 @@ export default function TermsOfServicePage() {
             </article>
 
             {/* Section 4 */}
-            <article
-              id="mentee-conduct"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
+            <article id="mentee-conduct" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
                 4. Student Code of Conduct
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 To maintain a supportive, harassment-free environment for all
                 seniors and juniors:
               </p>
-              <ul
-                className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base"
-              >
+              <ul className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base">
                 <li>
                   Do not record video or audio of guidance sessions without explicit
                   written consent from the mentor.
@@ -265,23 +218,14 @@ export default function TermsOfServicePage() {
             </article>
 
             {/* Section 5 */}
-            <article
-              id="mentor-obligations"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
-                5. Mentor Obligations & Standards
+            <article id="mentor-obligations" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
+                5. Mentor Obligations &amp; Standards
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 Verified mentors on Mentra agree to:
               </p>
-              <ul
-                className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base"
-              >
+              <ul className="list-disc space-y-2 pl-5 text-sm text-slate-600 sm:text-base">
                 <li>
                   Attend all booked sessions punctually and provide focused,
                   constructive, and supportive advice.
@@ -298,58 +242,35 @@ export default function TermsOfServicePage() {
             </article>
 
             {/* Section 6 */}
-            <article
-              id="bookings-refunds"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
-                6. Bookings, Cancellations & Refund Policy
+            <article id="bookings-refunds" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
+                6. Bookings, Cancellations &amp; Refund Policy
               </h2>
-              <div className="space-y-3 pl-2 text-sm sm:text-base">
-                <div
-                  className="rounded-xl border border-violet-100 bg-white p-4 shadow-xs"
-                >
-                  <h3
-                    className="font-semibold text-[var(--foreground)]"
-                  >
+              <div className="space-y-4 pl-1 text-sm sm:text-base">
+                <div className="rounded-xl border border-violet-100 bg-white/70 p-4">
+                  <h3 className="font-semibold text-[#1E1B4B]">
                     A. Free 15-Minute Intro Sessions:
                   </h3>
-                  <p
-                    className="mt-1 text-slate-600"
-                  >
+                  <p className="mt-1.5 text-slate-600">
                     Students may book one free 15-minute intro session per mentor
                     to confirm fit and chemistry with zero financial commitment.
                   </p>
                 </div>
-                <div
-                  className="rounded-xl border border-violet-100 bg-white p-4 shadow-xs"
-                >
-                  <h3
-                    className="font-semibold text-[var(--foreground)]"
-                  >
-                    B. Cancellation & Rescheduling:
+                <div className="rounded-xl border border-violet-100 bg-white/70 p-4">
+                  <h3 className="font-semibold text-[#1E1B4B]">
+                    B. Cancellation &amp; Rescheduling:
                   </h3>
-                  <p
-                    className="mt-1 text-slate-600"
-                  >
+                  <p className="mt-1.5 text-slate-600">
                     Sessions may be rescheduled without penalty up to <strong>2
                     hours prior</strong> to the scheduled start time through your
                     student dashboard.
                   </p>
                 </div>
-                <div
-                  className="rounded-xl border border-violet-100 bg-white p-4 shadow-xs"
-                >
-                  <h3
-                    className="font-semibold text-[var(--foreground)]"
-                  >
+                <div className="rounded-xl border border-violet-100 bg-white/70 p-4">
+                  <h3 className="font-semibold text-[#1E1B4B]">
                     C. 100% Refund Guarantee:
                   </h3>
-                  <p
-                    className="mt-1 text-slate-600"
-                  >
+                  <p className="mt-1.5 text-slate-600">
                     If a mentor fails to join the call within 10 minutes of the
                     session time or if technical issues prevent the call, the
                     student will receive a full 100% refund credited back to the
@@ -360,18 +281,11 @@ export default function TermsOfServicePage() {
             </article>
 
             {/* Section 7 */}
-            <article
-              id="intellectual-property"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
+            <article id="intellectual-property" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
                 7. Intellectual Property
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 The Mentra name, logo, brand design, illustrations, and codebase
                 are proprietary trademarks and intellectual property of Mentra
                 EdTech Private Limited. You may not copy, reverse-engineer, or
@@ -380,20 +294,12 @@ export default function TermsOfServicePage() {
             </article>
 
             {/* Section 8 */}
-            <article
-              id="disclaimers-liability"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
-                8. Disclaimers & Limitation of Liability
+            <article id="disclaimers-liability" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
+                8. Disclaimers &amp; Limitation of Liability
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
-                The platform is provided on an ""as is" and &
-quot;as available" basis. To the maximum extent permitted by
+              <p className="text-sm sm:text-base">
+                The platform is provided on an &quot;as is&quot; and &quot;as available&quot; basis. To the maximum extent permitted by
                 applicable Indian law, Mentra disclaims all express or implied
                 warranties. In no event shall Mentra&apos;s aggregate liability
                 exceed the total fee paid by the student for the specific session
@@ -402,62 +308,53 @@ quot;as available" basis. To the maximum extent permitted by
             </article>
 
             {/* Section 9 */}
-            <article
-              id="governing-law"
-              className="scroll-mt-28 space-y-4"
-            >
-              <h2
-                className="text-xl font-bold text-[var(--foreground)] sm:text-2xl"
-              >
-                9. Governing Law & Dispute Resolution
+            <article id="governing-law" className="scroll-mt-28 space-y-4">
+              <h2 className="text-xl font-bold text-[#1E1B4B] sm:text-2xl">
+                9. Governing Law &amp; Dispute Resolution
               </h2>
-              <p
-                className="text-sm sm:text-base"
-              >
+              <p className="text-sm sm:text-base">
                 These Terms shall be governed by and construed in accordance with
                 the laws of the Republic of India. Any legal dispute or controversy
                 arising out of these Terms shall be subject to the exclusive
                 jurisdiction of the competent courts in New Delhi, India.
               </p>
-              <div
-                className="rounded-2xl border border-violet-200 bg-white/90 p-5 shadow-xs sm:p-6"
-              >
+              <div className="rounded-2xl border border-violet-200/80 bg-white/90 p-6 shadow-[0_10px_30px_-15px_rgba(124,58,237,0.08)] sm:p-7 backdrop-blur-sm">
                 <div className="flex items-center gap-3">
-                  <div
-                    className="flex size-10 items-center justify-center rounded-full bg-violet-100 text-[#7C3AED]"
-                  >
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-violet-100 text-[#7C3AED]">
                     <Mail className="size-5" />
                   </div>
                   <div>
-                    <h3
-                      className="font-bold text-[var(--foreground)]"
-                    >
+                    <h3 className="font-bold text-[#1E1B4B]">
                       Legal Team Contact
                     </h3>
-                    <p
-                      className="text-xs text-slate-500"
-                    >
+                    <p className="text-xs text-slate-500">
                       Mentra EdTech Private Limited
                     </p>
                   </div>
                 </div>
-                <div className="mt-4 space-y-1 text-sm text-slate-600">
+                <div className="mt-4 space-y-1.5 text-sm text-slate-600">
                   <p>
-                    <strong>Email:</strong> legal@mentra.in / support@mentra.in
+                    <strong className="text-[#1E1B4B]">Email:</strong>{" "}
+                    <a href="mailto:legal@mentra.in" className="text-[#7C3AED] hover:underline">
+                      legal@mentra.in
+                    </a>{" "}
+                    /{" "}
+                    <a href="mailto:support@mentra.in" className="text-[#7C3AED] hover:underline">
+                      support@mentra.in
+                    </a>
                   </p>
                   <p>
-                    <strong>Response Time:</strong> Within 48 hours for legal and
-                    booking inquiries.
+                    <strong className="text-[#1E1B4B]">Response Time:</strong> Within 48 hours for legal and booking inquiries.
                   </p>
                 </div>
               </div>
             </article>
 
             {/* Bottom Navigation Link */}
-            <div className="border-t border-violet-100 pt-8">
+            <div className="border-t border-violet-100/80 pt-8">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#7C3AED] transition hover:text-[#6D28D9]"
+                className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-5 py-2.5 text-sm font-semibold text-[#1E1B4B] shadow-xs transition duration-200 hover:-translate-y-0.5 hover:bg-violet-50 hover:text-[#7C3AED]"
               >
                 <ArrowLeft className="size-4" />
                 Back to Mentra Home
