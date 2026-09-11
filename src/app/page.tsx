@@ -563,24 +563,28 @@ function ProblemSection() {
       title: "Narrow exposure",
       copy:
         "Students often hear only a small set of options from school, family, or coaching circles.",
+      solution: "50+ real paths mapped by seniors",
     },
     {
       number: "02",
       title: "Pressure-led choices",
       copy:
         "Stream and college decisions can get shaped by pressure before students understand their own fit.",
+      solution: "Zero-pressure, honest 1-on-1 talks",
     },
     {
       number: "03",
       title: "Thin guidance access",
       copy:
         "One-to-one guidance is difficult to find exactly when students need it most.",
+      solution: "Verified seniors on demand in minutes",
     },
     {
       number: "04",
       title: "Late clarity",
       copy:
         "The right questions often appear after important forms, deadlines, or decisions have already passed.",
+      solution: "Proactive guidance before deadlines",
     },
   ];
 
@@ -605,16 +609,16 @@ function ProblemSection() {
               generic advice and less than a giant career-consulting process.
             </p>
 
-            <div className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-violet-100 bg-[#F8F5FF] shadow-[0_22px_55px_-38px_rgba(76,29,149,0.45)]">
+            <div className="group relative mt-8 overflow-hidden rounded-[1.75rem] border border-violet-100 bg-[#F8F5FF] shadow-[0_22px_55px_-38px_rgba(76,29,149,0.45)] transition-all duration-300 hover:shadow-[0_28px_65px_-35px_rgba(124,58,237,0.35)]">
               <Image
                 src="/brand/decision-guidance-illustration.png"
                 alt="A senior helping a student see their academic options more clearly"
                 width={1024}
                 height={1536}
                 sizes="(min-width: 1024px) 29vw, (min-width: 640px) 48vw, 100vw"
-                className="aspect-[1.12/1] w-full object-cover object-[50%_34%]"
+                className="aspect-[1.12/1] w-full object-cover object-[50%_34%] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
               />
-              <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/70 bg-white/85 p-3.5 shadow-lg shadow-violet-950/10 backdrop-blur-md">
+              <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/70 bg-white/85 p-3.5 shadow-lg shadow-violet-950/10 backdrop-blur-md transition-colors duration-300 group-hover:bg-white/95">
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7C3AED]">
                   From uncertainty to a next step
                 </p>
