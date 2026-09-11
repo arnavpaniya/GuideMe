@@ -258,7 +258,7 @@ export function SignupView({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="space-y-4 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-6 text-center"
+              className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50/80 p-6 text-center"
             >
               <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-slate-950 text-white">
                 <CheckCircle2 className="size-6" />
@@ -311,7 +311,7 @@ export function SignupView({
                           onClick={() => handleRoleSelect(role)}
                           aria-pressed={isSelected}
                           className={cn(
-                            "group relative flex min-h-[200px] flex-col overflow-hidden rounded-[1.5rem] border p-5 text-left transition duration-200 sm:min-h-[205px]",
+                            "group relative flex min-h-50 flex-col overflow-hidden rounded-3xl border p-5 text-left transition duration-200 sm:min-h-51.25",
                             isSelected
                               ? "border-[#4F46E5] bg-indigo-50/60 shadow-[0_20px_42px_-28px_rgba(79,70,229,0.38)]"
                               : "border-slate-200/90 bg-white/90 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-white hover:shadow-[0_18px_40px_-28px_rgba(15,23,42,0.18)]",
@@ -322,7 +322,7 @@ export function SignupView({
                           <div className="flex items-start justify-between">
                             <span
                               className={cn(
-                                "flex size-12 items-center justify-center rounded-[1rem] transition duration-200",
+                                "flex size-12 items-center justify-center rounded-2xl transition duration-200",
                                 isSelected
                                   ? "bg-[#4F46E5] text-white shadow-[0_10px_24px_-16px_rgba(79,70,229,0.6)]"
                                   : "bg-indigo-50 text-[#4F46E5] group-hover:bg-indigo-100",
@@ -412,7 +412,7 @@ export function SignupView({
                   </div>
 
                   {selectedRole ? (
-                    <div className="rounded-[1.5rem] border border-indigo-100 bg-indigo-50/[0.45] p-5">
+                    <div className="rounded-3xl border border-indigo-100 bg-indigo-50/45 p-5">
                       <div className="flex items-start justify-between gap-4">
                         <div>
                           <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#4F46E5]">

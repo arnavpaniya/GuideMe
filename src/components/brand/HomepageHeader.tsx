@@ -4,7 +4,16 @@ import { useEffect, useState } from "react";
 import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Compass, Menu, Sparkles, Users, X } from "lucide-react";
+import {
+  ArrowRight,
+  Compass,
+  CreditCard,
+  GraduationCap,
+  Menu,
+  Sparkles,
+  Users,
+  X,
+} from "lucide-react";
 
 import { MentraLogo } from "@/components/brand/MentraLogo";
 
@@ -52,6 +61,12 @@ export function HomepageHeader() {
     {
       label: "How it Works",
       href: isHome ? "#how-it-works" : "/#how-it-works",
+      isActive: false,
+      badge: null,
+    },
+    {
+      label: "Pricing",
+      href: isHome ? "#pricing" : "/#pricing",
       isActive: false,
       badge: null,
     },
@@ -184,11 +199,17 @@ export function HomepageHeader() {
                     {link.label === "Find a Mentor" && (
                       <Compass className="size-4 text-[#7C3AED]" />
                     )}
-                    {link.label === "Community" && (
-                      <Users className="size-4 text-[#7C3AED]" />
-                    )}
                     {link.label === "How it Works" && (
                       <Sparkles className="size-4 text-[#7C3AED]" />
+                    )}
+                    {link.label === "Pricing" && (
+                      <CreditCard className="size-4 text-[#7C3AED]" />
+                    )}
+                    {link.label === "For Mentors" && (
+                      <GraduationCap className="size-4 text-[#7C3AED]" />
+                    )}
+                    {link.label === "Community" && (
+                      <Users className="size-4 text-[#7C3AED]" />
                     )}
                     <span>{link.label}</span>
                   </div>

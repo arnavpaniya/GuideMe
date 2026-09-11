@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 import { MentraLogo } from "@/components/brand/MentraLogo";
 
@@ -77,11 +78,17 @@ export function HomepageFooter() {
           <p>© {new Date().getFullYear()} Mentra. All rights reserved.</p>
 
           <div className="flex items-center gap-3">
-            <Link href="/privacy" className="transition hover:text-slate-600">
+            <Link
+              href={"/privacy" as Route}
+              className="transition hover:text-slate-600"
+            >
               Privacy Policy
             </Link>
             <span aria-hidden="true">·</span>
-            <Link href="/terms" className="transition hover:text-slate-600">
+            <Link
+              href={"/terms" as Route}
+              className="transition hover:text-slate-600"
+            >
               Terms of Service
             </Link>
           </div>

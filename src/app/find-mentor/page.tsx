@@ -7,6 +7,7 @@ import {
   BookOpen,
   Briefcase,
   Check,
+  ChevronDown,
   Compass,
   Cpu,
   GraduationCap,
@@ -64,6 +65,16 @@ type QuickFilter = {
 };
 
 // Curated verified senior profiles to guarantee the directory is rich,
+const DEFAULT_AVATARS = [
+  "/avatars/mentor-5.jpg",
+  "/avatars/mentor-3.jpg",
+  "/avatars/mentor-2.jpg",
+  "/avatars/mentor-1.jpg",
+  "/avatars/mentor-4.jpg",
+  "/avatars/mentor-6.jpg",
+];
+
+// Curated verified senior profiles to guarantee the directory is rich,
 // credible, and representative during development or when DB has pending verifications.
 const CURATED_FEATURED_MENTORS: PublicMentorCard[] = [
   {
@@ -71,7 +82,7 @@ const CURATED_FEATURED_MENTORS: PublicMentorCard[] = [
     name: "Aryan Sharma",
     firstName: "Aryan",
     username: "aryan-sharma-iitb",
-    image: null,
+    image: "/avatars/mentor-5.jpg",
     headline: "IIT Bombay CSE '25 · AIR 142 JEE Advanced. I help juniors navigate prep strategy, branch selection, and IIT life.",
     college: "IIT Bombay",
     degree: "B.Tech Computer Science",
@@ -92,7 +103,7 @@ const CURATED_FEATURED_MENTORS: PublicMentorCard[] = [
     name: "Dr. Ananya Sen",
     firstName: "Ananya",
     username: "ananya-sen-aiims",
-    image: null,
+    image: "/avatars/mentor-3.jpg",
     headline: "AIIMS New Delhi MBBS '26 · NEET Score 695/720. Mentoring on Biology retention, test anxiety, and AIIMS vs state colleges.",
     college: "AIIMS New Delhi",
     degree: "MBBS",
@@ -113,7 +124,7 @@ const CURATED_FEATURED_MENTORS: PublicMentorCard[] = [
     name: "Rohan Verma",
     firstName: "Rohan",
     username: "rohan-verma-bits",
-    image: null,
+    image: "/avatars/mentor-2.jpg",
     headline: "BITS Pilani EEE '24 → Amazon SDE. BITSAT 342. Helping students choose between dual degree, electrical vs CSE, and placement prep.",
     college: "BITS Pilani",
     degree: "B.E. Electrical & Electronics",
@@ -134,7 +145,7 @@ const CURATED_FEATURED_MENTORS: PublicMentorCard[] = [
     name: "Sneha Patel",
     firstName: "Sneha",
     username: "sneha-patel-srcc",
-    image: null,
+    image: "/avatars/mentor-1.jpg",
     headline: "SRCC '23 → IIM Bangalore '25 · CA Intermediate All-India Top 50. Guiding Commerce students through CA vs MBA decisions.",
     college: "IIM Bangalore",
     degree: "MBA / PGP",
@@ -155,7 +166,7 @@ const CURATED_FEATURED_MENTORS: PublicMentorCard[] = [
     name: "Kabir Mehta",
     firstName: "Kabir",
     username: "kabir-mehta-nlud",
-    image: null,
+    image: "/avatars/mentor-4.jpg",
     headline: "NLU Delhi B.A. LL.B '25 · CLAT AIR 84. Helping aspirants with critical reasoning, legal aptitude, and choosing between top NLUs.",
     college: "NLU Delhi",
     degree: "B.A. LL.B (Hons)",
@@ -176,7 +187,7 @@ const CURATED_FEATURED_MENTORS: PublicMentorCard[] = [
     name: "Tanvi Deshmukh",
     firstName: "Tanvi",
     username: "tanvi-deshmukh-nitt",
-    image: null,
+    image: "/avatars/mentor-6.jpg",
     headline: "NIT Trichy Mechanical '25 · GATE AIR 215. Guiding students through core engineering, college culture, and GATE preparation.",
     college: "NIT Trichy",
     degree: "B.Tech Mechanical",
@@ -268,7 +279,13 @@ function filterCuratedMentors(
   });
 }
 
-function MentorCard({ mentor }: { mentor: PublicMentorCard }) {
+function MentorCard({
+  mentor,
+  index = 0,
+}: {
+  mentor: PublicMentorCard;
+  index?: number;
+}) {
   const profileHref = (mentor.username
     ? `/mentor/${encodeURIComponent(mentor.username)}`
     : `/mentor/${mentor.id}`) as Route;
@@ -286,6 +303,7 @@ function MentorCard({ mentor }: { mentor: PublicMentorCard }) {
       : ["Stream Guidance", "College Selection", "Career Clarity"];
 
   const isElite = mentor.tier === "ELITE";
+  const avatarSrc = mentor.image || DEFAULT_AVATARS[index % DEFAULT_AVATARS.length];
 
   return (
     <article className="mentra-clay-card group relative flex flex-col justify-between rounded-3xl border bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-violet-200 hover:shadow-[0_24px_48px_-20px_rgba(124,58,237,0.22)]">
@@ -295,7 +313,7 @@ function MentorCard({ mentor }: { mentor: PublicMentorCard }) {
           {/* Avatar with live status pulse */}
           <div className="relative shrink-0">
             <MentorAvatar
-              src={mentor.image}
+              src={avatarSrc}
               alt={mentor.name}
               fallback={mentor.firstName.charAt(0)}
               className="size-16 rounded-2xl border border-white bg-violet-50/90 text-lg font-bold text-[#7C3AED] ring-2 ring-violet-50 shadow-[inset_2px_2px_5px_rgba(255,255,255,0.9),0_10px_20px_-12px_rgba(76,29,149,0.45)]"
@@ -614,6 +632,8 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
 
   const primaryCategoryTabs = categoryTabs.slice(0, 5);
   const additionalCategoryTabs = categoryTabs.slice(5);
+  const activeAdditionalTab = additionalCategoryTabs.find((tab) => tab.active);
+  const ActiveAdditionalIcon = activeAdditionalTab?.icon;
   const activeRefinementCount = [tier, priceMax, available, forClass].filter(Boolean).length;
 
   return (
@@ -633,7 +653,7 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
 
       <main className="relative">
         {/* Compact, Professional Header */}
-        <section className="mentra-hero-depth relative overflow-hidden border-b border-violet-100/70 bg-gradient-to-b from-[#FAF5FF] to-white/40 pt-8 pb-7 sm:pt-12 sm:pb-9">
+        <section className="mentra-hero-depth relative z-20 border-b border-violet-100/70 bg-gradient-to-b from-[#FAF5FF] to-white/40 pt-8 pb-7 sm:pt-12 sm:pb-9">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               {/* Trust Badge */}
@@ -736,11 +756,26 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
                   );
                 })}
                 <details className="group relative">
-                  <summary className="flex cursor-pointer list-none items-center gap-1.5 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-violet-200 hover:text-[#7C3AED] [&::-webkit-details-marker]:hidden">
-                    More paths
-                    <span className="text-[10px] text-slate-400 transition group-open:rotate-45">+</span>
+                  <summary
+                    className={cn(
+                      "flex cursor-pointer list-none items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all duration-150 select-none [&::-webkit-details-marker]:hidden",
+                      activeAdditionalTab
+                        ? "border-[#7C3AED] bg-[#7C3AED] text-white shadow-[0_10px_20px_-12px_rgba(124,58,237,0.7)]"
+                        : "border-white bg-white/80 text-slate-600 shadow-[inset_1px_1px_3px_rgba(255,255,255,0.9),0_9px_18px_-15px_rgba(76,29,149,0.3)] hover:-translate-y-0.5 hover:border-violet-200 hover:bg-violet-50/80 hover:text-[#1E1B4B]"
+                    )}
+                  >
+                    {ActiveAdditionalIcon && (
+                      <ActiveAdditionalIcon className="size-3.5 text-white" />
+                    )}
+                    <span>{activeAdditionalTab ? activeAdditionalTab.label : "More paths"}</span>
+                    <ChevronDown
+                      className={cn(
+                        "size-3.5 transition-transform duration-200 group-open:rotate-180",
+                        activeAdditionalTab ? "text-white/80" : "text-slate-400"
+                      )}
+                    />
                   </summary>
-                  <div className="absolute left-0 top-[calc(100%+0.55rem)] z-20 grid min-w-52 gap-1 rounded-2xl border border-violet-100 bg-white p-2 shadow-[0_18px_45px_-20px_rgba(76,29,149,0.28)]">
+                  <div className="absolute right-0 sm:left-0 sm:right-auto top-[calc(100%+0.55rem)] z-50 grid min-w-56 gap-1 rounded-2xl border border-violet-200/90 bg-white/95 p-2 shadow-[0_20px_50px_-15px_rgba(76,29,149,0.25)] backdrop-blur-xl ring-1 ring-black/5">
                     {additionalCategoryTabs.map((tab) => {
                       const Icon = tab.icon;
                       return (
@@ -748,12 +783,17 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
                           key={tab.id}
                           href={{ pathname: "/find-mentor", query: removeEmpty(tab.query) }}
                           className={cn(
-                            "flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition",
-                            tab.active ? "bg-violet-50 text-[#7C3AED]" : "text-slate-600 hover:bg-violet-50 hover:text-[#1E1B4B]",
+                            "flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold transition-colors",
+                            tab.active
+                              ? "bg-violet-50 text-[#7C3AED]"
+                              : "text-slate-600 hover:bg-violet-50/80 hover:text-[#1E1B4B]"
                           )}
                         >
-                          <Icon className="size-3.5 text-[#7C3AED]" />
-                          {tab.label}
+                          <span className="flex items-center gap-2">
+                            <Icon className="size-3.5 text-[#7C3AED]" />
+                            <span>{tab.label}</span>
+                          </span>
+                          {tab.active && <Check className="size-3.5 text-[#7C3AED]" />}
                         </Link>
                       );
                     })}
@@ -763,14 +803,14 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
 
               {/* Refinements no longer permanently occupy a second dense row. */}
               <details className="group mt-3" open={activeRefinementCount > 0}>
-                <summary className="flex w-fit cursor-pointer list-none items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-violet-200 hover:bg-white hover:text-[#7C3AED] [&::-webkit-details-marker]:hidden">
+                <summary className="flex w-fit cursor-pointer list-none items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-violet-200 hover:bg-white hover:text-[#7C3AED] select-none [&::-webkit-details-marker]:hidden">
                   Filters
                   {activeRefinementCount > 0 && (
                     <span className="flex size-4 items-center justify-center rounded-full bg-[#7C3AED] text-[10px] text-white">
                       {activeRefinementCount}
                     </span>
                   )}
-                  <span className="text-[10px] text-slate-400 transition group-open:rotate-45">+</span>
+                  <ChevronDown className="size-3 text-slate-400 transition-transform duration-200 group-open:rotate-180" />
                 </summary>
                 <div className="mt-2 flex flex-wrap items-center gap-1.5">
                 {quickFilters.map((filter) => {
@@ -842,8 +882,8 @@ export default async function FindMentorPage({ searchParams }: PageProps) {
           {/* Cards Grid */}
           {displayMentors.length > 0 ? (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {displayMentors.map((mentor) => (
-                <MentorCard key={mentor.id} mentor={mentor} />
+              {displayMentors.map((mentor, index) => (
+                <MentorCard key={mentor.id} mentor={mentor} index={index} />
               ))}
             </div>
           ) : (
