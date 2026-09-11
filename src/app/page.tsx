@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -5,10 +6,13 @@ import {
   GraduationCap,
   HeartHandshake,
   ShieldCheck,
+  Star,
   Users,
 } from "lucide-react";
 
 import { MentraLogo } from "@/components/brand/MentraLogo";
+import { HomepageHeader } from "@/components/brand/HomepageHeader";
+import { HomepageFooter } from "@/components/brand/HomepageFooter";
 import {
   getPublicPlatformSnapshot,
   getPublicReviewSpotlights,
@@ -158,76 +162,6 @@ function getReviewInitials(review: PublicReviewSpotlight) {
     .join("");
 }
 
-function HomepageHeader() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-violet-100/80 bg-[#FAF5FF]/90 backdrop-blur-xl">
-      <div className="mx-auto flex min-h-[68px] max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <a
-          href="/"
-          aria-label="Mentra home"
-          className="flex w-[120px] shrink-0 items-center sm:w-[140px] lg:w-[150px]"
-        >
-          <MentraLogo
-            variant="color"
-            size="sm"
-            className="w-full"
-          />
-        </a>
-
-        <nav
-          aria-label="Main navigation"
-          className="hidden items-center gap-7 md:flex"
-        >
-          <Link
-            href="/find-mentor"
-            className="text-sm font-medium text-slate-600 transition-colors hover:text-[#1E1B4B]"
-          >
-            Find a Mentor
-          </Link>
-          <Link
-            href="#how-it-works"
-            className="text-sm font-medium text-slate-600 transition-colors hover:text-[#1E1B4B]"
-          >
-            How it Works
-          </Link>
-          <Link
-            href="#for-mentors"
-            className="text-sm font-medium text-slate-600 transition-colors hover:text-[#1E1B4B]"
-          >
-            For Mentors
-          </Link>
-          <Link
-            href="/community"
-            className="text-sm font-medium text-slate-600 transition-colors hover:text-[#1E1B4B]"
-          >
-            Community
-          </Link>
-        </nav>
-
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link
-            href="/auth/signup?role=MENTOR"
-            className="hidden rounded-full border border-violet-200 bg-white px-4 py-2.5 text-sm font-semibold text-[#1E1B4B] transition hover:border-violet-300 hover:bg-violet-50 sm:inline-flex"
-          >
-            Become a Mentor
-          </Link>
-
-          <Link
-            href="/find-mentor"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#7C3AED] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-16px_rgba(124,58,237,0.65)] transition hover:-translate-y-0.5 hover:bg-[#6D28D9] hover:shadow-[0_14px_34px_-16px_rgba(124,58,237,0.72)]"
-          >
-            <span className="hidden sm:inline">
-              Find My Senior Friend
-            </span>
-            <span className="sm:hidden">Find a Mentor</span>
-            <ArrowRight className="size-4 shrink-0" />
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
-
 function HeroSection({
   snapshot,
 }: {
@@ -322,6 +256,68 @@ function HeroSection({
                 {formatNumber(snapshot.totalMentors)} verified mentors
               </span>
             </div>
+
+            {/* Community Social Proof Avatar Strip */}
+            <div className="mt-8 flex items-center gap-2.5 pt-1 sm:gap-3.5">
+              <div className="flex shrink-0 -space-x-2 overflow-hidden sm:-space-x-2.5">
+                <div className="relative size-9 overflow-hidden rounded-full ring-2 ring-white shadow-xs sm:size-10">
+                  <Image
+                    src="/avatars/mentor-1.jpg"
+                    alt="Mentra senior mentor Ananya"
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative size-9 overflow-hidden rounded-full ring-2 ring-white shadow-xs sm:size-10">
+                  <Image
+                    src="/avatars/mentor-2.jpg"
+                    alt="Mentra senior mentor Rohan"
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative size-9 overflow-hidden rounded-full ring-2 ring-white shadow-xs sm:size-10">
+                  <Image
+                    src="/avatars/mentor-3.jpg"
+                    alt="Mentra senior mentor Pooja"
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative size-9 overflow-hidden rounded-full ring-2 ring-white shadow-xs sm:size-10">
+                  <Image
+                    src="/avatars/mentor-4.jpg"
+                    alt="Mentra senior mentor Kabir"
+                    fill
+                    sizes="40px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              <div className="text-left">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs font-bold text-[#1E1B4B]">
+                  <div className="flex items-center gap-0.5" aria-label="5 stars rating">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="size-3.5 fill-amber-400 text-amber-400"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <span className="font-extrabold text-[#1E1B4B]">4.95/5</span>
+                  <span className="size-1 rounded-full bg-slate-300" aria-hidden="true" />
+                  <span className="font-bold text-[#7C3AED]">10,000+ Students Guided</span>
+                </div>
+                <p className="mt-0.5 text-[11px] leading-snug font-medium text-slate-500 sm:mt-1 sm:text-xs">
+                  Active peer circles in IIT, AIIMS, BITS &amp; top colleges
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Mentor preview */}
@@ -332,6 +328,28 @@ function HeroSection({
             />
 
             <div className="relative rounded-[2rem] border border-white/80 bg-white/70 p-5 shadow-[0_28px_80px_-38px_rgba(30,27,75,0.30)] backdrop-blur-2xl sm:p-6">
+              {/* Live Session Photo Banner */}
+              <div className="relative mb-5 overflow-hidden rounded-2xl border border-violet-100/90 shadow-xs group">
+                <Image
+                  src="/hero/senior-mentor-guidance.jpg"
+                  alt="Live 1:1 senior mentorship session"
+                  width={600}
+                  height={338}
+                  className="w-full object-cover aspect-[16/9] transition-transform duration-500 group-hover:scale-[1.03]"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/85 via-transparent to-black/20 pointer-events-none" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs">
+                  <div className="flex items-center gap-1.5 font-medium">
+                    <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="font-semibold text-white drop-shadow-sm">Live 1:1 Guidance Session</span>
+                  </div>
+                  <span className="rounded-full bg-white/25 px-2.5 py-0.5 text-[10.5px] font-semibold backdrop-blur-md">
+                    IIT & AIIMS Seniors
+                  </span>
+                </div>
+              </div>
+
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7C3AED]">
@@ -1183,25 +1201,178 @@ function MentorIncomeSection({
   );
 }
 
+function HomeCommunitySection() {
+  return (
+    <section
+      id="community"
+      className="relative overflow-hidden border-t border-violet-100/80 bg-[#FAF5FF] py-20 sm:py-24 lg:py-28"
+    >
+      <div
+        className="pointer-events-none absolute -left-28 top-20 h-80 w-80 rounded-full bg-[#7C3AED]/[0.08] blur-[110px]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-[#EC4899]/[0.07] blur-[110px]"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left Column: Copy & Stats */}
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-white/80 px-3.5 py-1.5 text-xs font-semibold text-[#6D28D9] shadow-xs backdrop-blur-sm">
+              <Users className="size-3.5 text-[#7C3AED]" />
+              <span>Mentra Student Community</span>
+            </div>
+
+            <h2 className="mt-5 text-balance text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#1E1B4B] sm:text-4xl lg:text-5xl">
+              You&apos;re not figuring this out{" "}
+              <span className="bg-gradient-to-r from-[#7C3AED] via-[#EC4899] to-[#F97316] bg-clip-text text-transparent">
+                alone.
+              </span>
+            </h2>
+
+            <p className="mt-5 text-base leading-7 text-[#4B5875] sm:text-lg">
+              Join over 10,000 students navigating the same big decisions — stream choices, competitive exams, college realities, and branch trade-offs. Connect with verified seniors who walked your exact road.
+            </p>
+
+            <div className="mt-8 grid grid-cols-3 gap-3 rounded-2xl border border-violet-100 bg-white/80 p-4 shadow-xs">
+              <div className="text-center">
+                <p className="text-2xl font-black text-[#1E1B4B]">10K+</p>
+                <p className="text-xs font-semibold text-[#7C3AED]">Students</p>
+              </div>
+              <div className="border-x border-violet-100 text-center">
+                <p className="text-2xl font-black text-[#1E1B4B]">50+</p>
+                <p className="text-xs font-semibold text-[#7C3AED]">Cities</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-black text-[#1E1B4B]">8</p>
+                <p className="text-xs font-semibold text-[#7C3AED]">Streams</p>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/community"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#7C3AED] px-6 text-sm font-semibold text-white shadow-[0_16px_36px_-18px_rgba(124,58,237,0.72)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#6D28D9]"
+              >
+                Join WhatsApp Community
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+
+              <Link
+                href="/community"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-violet-200 bg-white px-6 text-sm font-semibold text-[#1E1B4B] shadow-xs transition duration-200 hover:border-violet-300 hover:bg-violet-50/70"
+              >
+                Explore Community Hub
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Visual Image Showcase */}
+          <div className="relative">
+            <div
+              className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-[#7C3AED]/12 via-[#EC4899]/10 to-[#F97316]/8 blur-2xl"
+              aria-hidden="true"
+            />
+
+            <div className="relative space-y-3 sm:space-y-4">
+              {/* Main Photo: Campus Steps */}
+              <div className="group relative overflow-hidden rounded-3xl border border-white/90 bg-white p-2.5 shadow-[0_24px_60px_-30px_rgba(30,27,75,0.22)] backdrop-blur-xl">
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-violet-50">
+                  <Image
+                    src="/hero/community-hero.jpg"
+                    alt="Indian university students collaborating on campus"
+                    width={720}
+                    height={450}
+                    className="w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-white">
+                    <span className="font-semibold text-white drop-shadow-sm">
+                      Campus Chapters Across India
+                    </span>
+                    <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold backdrop-blur-md">
+                      IIT · DU · BITS · AIIMS
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Secondary Photo Grid: Lawn Circle & Senior Mentorship */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="group relative overflow-hidden rounded-2xl border border-white/90 bg-white p-2 shadow-xs">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-violet-50">
+                    <Image
+                      src="/hero/campus-lawn-circle.jpg"
+                      alt="Student study circles"
+                      width={360}
+                      height={270}
+                      className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/75 via-transparent to-transparent" />
+                    <div className="absolute bottom-2 left-2.5 right-2.5 text-[11px] font-bold text-white">
+                      Local Meetups & Circles
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative overflow-hidden rounded-2xl border border-white/90 bg-white p-2 shadow-xs">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-violet-50">
+                    <Image
+                      src="/hero/senior-junior-mentorship.jpg"
+                      alt="1:1 senior mentorship in action"
+                      width={360}
+                      height={270}
+                      className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/75 via-transparent to-transparent" />
+                    <div className="absolute bottom-2 left-2.5 right-2.5 text-[11px] font-bold text-white">
+                      1:1 Senior Advice
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FinalCtaSection({
   snapshot,
 }: {
   snapshot: PublicPlatformSnapshot;
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#1E1B4B] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+    <section id="cta" className="relative overflow-hidden bg-[#1E1B4B] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      {/* Background Image: Softly blurred campus at twilight */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <Image
+          src="/brand/cta-campus-bg.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-30 blur-[2px] scale-105"
+          priority={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1E1B4B]/80 via-[#1E1B4B]/65 to-[#1E1B4B]/95" />
+      </div>
+
       <div
-        className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#7C3AED]/20 blur-[100px]"
+        className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#7C3AED]/25 blur-[100px]"
         aria-hidden="true"
       />
 
       <div
-        className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-[#EC4899]/15 blur-[110px]"
+        className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-[#EC4899]/20 blur-[110px]"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-5xl">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-white/[0.04] px-6 py-12 text-center shadow-[0_30px_90px_-50px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:px-10 sm:py-14">
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.12] bg-[#1E1B4B]/45 px-6 py-12 text-center shadow-[0_30px_90px_-50px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:px-10 sm:py-14">
           <div
             className="pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-[#EC4899]/50 to-transparent"
             aria-hidden="true"
@@ -1244,91 +1415,6 @@ function FinalCtaSection({
   );
 }
 
-function HomepageFooter() {
-  return (
-    <footer className="border-t border-violet-100 bg-[#FAF5FF]">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <Link
-              href="/"
-              aria-label="Mentra home"
-              className="inline-flex w-[140px] items-center sm:w-[155px]"
-            >
-              <MentraLogo
-                variant="color"
-                size="sm"
-                className="w-full"
-              />
-            </Link>
-
-            <p className="mt-3 max-w-xs text-sm leading-6 text-slate-500">
-              Your senior friend · your guide.
-            </p>
-          </div>
-
-          <nav
-            aria-label="Footer navigation"
-            className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-slate-500"
-          >
-            <Link
-              href="/find-mentor"
-              className="transition-colors hover:text-[#1E1B4B]"
-            >
-              Find a Mentor
-            </Link>
-
-            <Link
-              href="#how-it-works"
-              className="transition-colors hover:text-[#1E1B4B]"
-            >
-              How it Works
-            </Link>
-
-            <Link
-              href="#pricing"
-              className="transition-colors hover:text-[#1E1B4B]"
-            >
-              Pricing
-            </Link>
-
-            <Link
-              href="#for-mentors"
-              className="transition-colors hover:text-[#1E1B4B]"
-            >
-              For Mentors
-            </Link>
-
-            <Link
-              href="/community"
-              className="transition-colors hover:text-[#1E1B4B]"
-            >
-              Community
-            </Link>
-
-            <Link
-              href="/admin/signin"
-              className="transition-colors hover:text-[#1E1B4B]"
-            >
-              Admin / HR Login
-            </Link>
-          </nav>
-        </div>
-
-        <div className="mt-7 flex flex-col gap-3 border-t border-violet-100 pt-5 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Mentra</p>
-
-          <div className="flex items-center gap-3">
-            <span>Privacy Policy</span>
-            <span aria-hidden="true">·</span>
-            <span>Terms of Service</span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default async function Home() {
   const [snapshot, reviews] = await Promise.all([
     getPublicPlatformSnapshot(),
@@ -1341,7 +1427,7 @@ export default async function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
+    <main className="min-h-screen overflow-x-hidden bg-[#FAF5FF] text-[#1E1B4B]">
       <HomepageHeader />
 
       <HeroSection snapshot={pageSnapshot} />
@@ -1357,6 +1443,8 @@ export default async function Home() {
       <PricingSection snapshot={pageSnapshot} />
 
       <MentorIncomeSection snapshot={pageSnapshot} />
+
+      <HomeCommunitySection />
 
       <FinalCtaSection snapshot={pageSnapshot} />
 

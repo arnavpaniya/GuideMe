@@ -74,7 +74,7 @@ export default async function AuthErrorPage({ searchParams }: AuthErrorPageProps
             href={signInHref}
             className={cn(
               buttonVariants({}),
-              "h-12 rounded-xl bg-slate-950 text-base font-semibold text-white hover:bg-slate-900",
+              "h-12 rounded-xl bg-slate-950 text-base font-semibold text-white hover:bg-slate-900 focus-visible:ring-2 focus-visible:ring-[#4F46E5]/40 focus-visible:ring-offset-2",
             )}
           >
             Back to sign in
@@ -84,7 +84,7 @@ export default async function AuthErrorPage({ searchParams }: AuthErrorPageProps
             href={signUpHref}
             className={cn(
               buttonVariants({ variant: "outline" }),
-              "h-12 rounded-xl border-slate-200 bg-white text-base font-semibold text-slate-900 hover:bg-slate-100",
+              "h-12 rounded-xl border-slate-200 bg-white text-base font-semibold text-slate-900 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-[#4F46E5]/40 focus-visible:ring-offset-2",
             )}
           >
             Create an account
